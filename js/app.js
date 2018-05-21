@@ -27,6 +27,20 @@ let cardList = [
  *   - add each card's HTML to the page
  */
 
+ function displayCards() {
+     shuffle(cardList);
+
+     let cardHTML = ``;
+    //  loop through each card in cardList
+     for (let card of cardList) {
+        // create card HTML
+        cardHTML += `<li class="card">
+                        <i class="fa ${card}"></i>
+                    </li>`;
+     }
+     // add each card's HTML to the page
+ }
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
