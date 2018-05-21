@@ -1,3 +1,6 @@
+// Select deck of cards
+const deckOfCards = document.querySelector('.deck');
+
 /*
  * Create a list that holds all of your cards
  */
@@ -30,7 +33,7 @@ let cardList = [
  function displayCards() {
      shuffle(cardList);
 
-     let cardHTML = ``;
+     let cardHTML = '';
     //  loop through each card in cardList
      for (let card of cardList) {
         // create card HTML
@@ -39,6 +42,7 @@ let cardList = [
                     </li>`;
      }
      // add each card's HTML to the page
+     deckOfCards.innerHTML = cardHTML;
  }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
