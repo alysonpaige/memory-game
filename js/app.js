@@ -55,7 +55,14 @@ Timer
 - Select timer with `querySelector`
 - Initialize variables
 	- time, mins, secs
+- Alt: create span with IDs and use querySelector
 */
+const timerEl = document.querySelector('.timer-container');
+const minsEl = document.querySelector('#mins');
+const secsEl = document.querySelector('#secs');
+let mins = 0;
+let secs = 0;
+let timer;
 
 /* ----------------
 App Functionality
