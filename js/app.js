@@ -1,10 +1,9 @@
-// Select deck of cards
-const deckOfCards = document.querySelector('.deck');
+/* ----------------
+Initialize Variables
+---------------- */
 
-/*
- * Create a list that holds all of your cards
- */
-let cardList = [
+// List for all cards
+const cardList = [
     "fa-diamond",
     "fa-paper-plane-o",
     "fa-anchor",
@@ -21,58 +20,87 @@ let cardList = [
     "fa-leaf",
     "fa-bicycle",
     "fa-bomb"
-];
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
- function displayCards() {
-     shuffle(cardList);
-
-     let cardHTML = '';
-    //  loop through each card in cardList
-     for (let card of cardList) {
-        // create card HTML
-        cardHTML += `<li class="card">
-                        <i class="fa ${card}"></i>
-                    </li>`;
-     }
-     // add each card's HTML to the page
-     deckOfCards.innerHTML = cardHTML;
- }
-
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
-
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
-window.onload = function() {
-    displayCards();
-    document.querySelector('.restart').onclick = restartGame;
-};
+  ];
+  
+  // Select <ul> deck of cards
+  const deckOfCards = document.querySelector('.deck');
+  
+  // Array to store flipped cards
+  let flippedCard = [];
+  
+  // Array to store matched cards
+  let matchedCards = [];
+  
+  /* TODO:
+  Winner popup modal, add to:
+  - HTML
+  - CSS
+  - add getElementById('modal) js
+  */
+  
+  const restart = document.querySelector('.restart');
+  
+  // To track users quantity of moves per game
+  const moves = document.querySelector('.moves');
+  let movesCounter = 0;
+  
+  // Select star rating elements
+  const star = document.getElementById('star-rating-ul').querySelectorAll('.star');
+  let starCount = 3;
+  
+  /* TODO:
+  Timer
+  - Add to HTML under 'moves'
+    - Use a font-awesome icon
+  - Select timer with `querySelector`
+  - Initialize variables
+    - time, mins, secs
+  */
+  
+  /* ----------------
+  App Functionality
+  ---------------- */
+  
+  
+  /* TODO:
+  - Display Cards
+  - Shuffle Deck
+  - Start Timer
+  */
+  
+  
+  /* TODO:
+  - Has a card been clicked? Event listener
+  - Yes:
+    - Flip card to display icon (fn)
+    - Add card to flippedCard array (fn)
+  - No:
+    - Do nothing
+  */
+  
+  
+  /* TODO:
+  - Does the flippedCard array already have another card in it?
+    - Yes:
+      - Check to see if the cards match
+        - Yes:
+          - Lock cards in open position
+        - No:
+          - Remove cards from flippedCard array
+          - Flip card to hide symbol (fn)
+  - Increment move counter (fn)
+  */
+  
+  
+  /* TODO:
+  - Are all matches found?
+  - Yes: (fn)
+    - Display final score
+    - Popup modal
+    - Play again?
+      - Yes:
+        - Start Game
+      - No: 
+        - End
+  - No: Does the clicked card match a card in flippedCard array? (ABOVE)
+  */
