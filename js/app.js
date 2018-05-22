@@ -69,8 +69,18 @@ App Functionality
 	- Display on page
 - Start Timer (fn)
 */
+function displayCards() {
+	const shuffleDeck = shuffle(cardList);
+	cardHTML = '';
 
-
+	for (let card of shuffleDeck) {
+		cardHTML += `<li class="card">
+									<i class="fa ${card}"></i>
+								</li>`;
+	}
+	deckOfCards.innerHTML = cardHTML;
+};
+displayCards();
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
