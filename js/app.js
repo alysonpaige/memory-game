@@ -25,6 +25,9 @@ const cardList = [
 // Select <ul> deck of cards
 const deckOfCards = document.querySelector('.deck');
 
+// Select all <li> of cards
+var allCards = document.querySelectorAll('.card');
+
 // Array to store flipped cards
 let flippedCard = [];
 
@@ -57,12 +60,11 @@ Timer
 	- time, mins, secs
 - Alt: create span with IDs and use querySelector
 */
-const timerEl = document.querySelector('.timer-container');
-const minsEl = document.querySelector('#mins');
-const secsEl = document.querySelector('#secs');
-let mins = 0;
-let secs = 0;
-let timer;
+// const timerEl = document.querySelector('.timer-container');
+// const minsEl = document.querySelector('#mins');
+// const secsEl = document.querySelector('#secs');
+// let mins = 0;
+// let secs = 0;
 
 /* ----------------
 App Functionality
@@ -86,7 +88,7 @@ function displayCards() {
 								</li>`;
 	}
 	deckOfCards.innerHTML = cardHTML;
-};
+}
 displayCards();
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -112,7 +114,9 @@ function shuffle(array) {
 - No:
 	- Do nothing
 */
-
+deckOfCards.addEventListener('click', function(e) {
+	console.log('was clicked');
+})
 
 /* TODO:
 - Does the flippedCard array already have another card in it?
