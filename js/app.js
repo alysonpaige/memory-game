@@ -24,9 +24,8 @@ const cardList = [
 
 // Select <ul> deck of cards
 const deckOfCards = document.querySelector('.deck');
-
-// Select all <li> of cards
-var allCards = document.querySelectorAll('.card');
+let card = deckOfCards.querySelectorAll('.card');
+let cards = [...card];
 
 // Array to store flipped cards
 let flippedCard = [];
@@ -114,10 +113,15 @@ function shuffle(array) {
 - No:
 	- Do nothing
 */
-deckOfCards.addEventListener('click', function(e) {
+for (var i = 0; i < cards.length; i++) {
+	cards[i].addEventListener('click', flipCard);
 	console.log('was clicked');
-})
+}
 
+function flipCard() {
+	this.classList.toggle('open');
+	this.classList.toggle('show');
+}
 /* TODO:
 - Does the flippedCard array already have another card in it?
 	- Yes:
