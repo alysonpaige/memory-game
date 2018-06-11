@@ -8,7 +8,7 @@ const cardArr = [ "fa-diamond", "fa-diamond",
 									"fa-bomb", "fa-bomb" ];
 
 function generateCard(card) {
-	return `<li class="card">
+	return `<li class="card" data-card="${card}">
 						<i class="fa ${card}"></i>
 					</li>`;
 }
@@ -34,19 +34,28 @@ allCards.forEach(function(card) {
 			flippedCards.push(card);
 			card.classList.add('open', 'show');
 
-			// check if they match
-			var firstCardType = flippedCards[0].dataset.card;
-			console.log(firstCardType);
-
-			// if cards don't match - go away
 			if (flippedCards.length === 2) {
-				setTimeout(function() {
-					flippedCards.forEach(function(card) {
-						card.classList.remove('open', 'show');
-					});
+				// check if they match
+				if (flippedCards[0].dataset.card === flippedCards[1].dataset.card) {
+					flippedCards[0].classList.add('match');
+					flippedCards[0].classList.add('open');
+					flippedCards[0].classList.add('show');
+
+					flippedCards[1].classList.add('match');
+					flippedCards[1].classList.add('open');
+					flippedCards[1].classList.add('show');
 
 					flippedCards = [];
-				}, 1000);
+				} else {
+					// if they don't match, hide
+					setTimeout(function() {
+						flippedCards.forEach(function(card) {
+							card.classList.remove('open', 'show');
+						});
+
+						flippedCards = [];
+					}, 1000);
+				}
 			}
 		}
 	});
