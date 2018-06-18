@@ -75,6 +75,36 @@ allCards.forEach(function(card) {
 	});
 });
 
+// Timer
+let sec = 0;
+let min = 0;
+let timer;
+
+function startTimer() {
+	timer = setInterval(insertTime, 1000);
+}
+
+function stopTimer() {
+	clearInterval(timer);
+	sec = 0;
+	min = 0;
+}
+
+function insertTime() {
+	sec++;
+	if (sec < 10) {
+		sec = `0${sec}`;
+	} 
+	if (sec >= 60) {
+		min++;
+		sec = '00';
+	}
+
+	// Display the time
+	document.querySelector('timer-container').innerHTML = '0' + min + ':' + sec;
+	// Use ES6? `0${min}:${sec}`
+}
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
