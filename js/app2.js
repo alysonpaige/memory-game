@@ -80,6 +80,10 @@ let sec = 0;
 let min = 0;
 let timer;
 
+document.querySelector('.card').addEventListener('click', startTimer);
+// Add stopTimer
+// Add resetTimer
+
 function startTimer() {
 	timer = setInterval(insertTime, 1000);
 }
@@ -101,8 +105,7 @@ function insertTime() {
 	}
 
 	// Display the time
-	document.querySelector('timer-container').innerHTML = '0' + min + ':' + sec;
-	// Use ES6? `0${min}:${sec}`
+	document.querySelector('.timer-container').innerHTML = `0${min}:${sec}`;
 }
 
 
