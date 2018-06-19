@@ -75,25 +75,44 @@ allCards.forEach(function(card) {
 	});
 });
 
-// Timer
+/* TIMER
+TODO:
+* - On 'restart' the timer doesn't start again after clicking, needs page refresh
+* - On 'restart' the board doesn't clear to start over
+*/
+// Timer variables
 let sec = 0;
 let min = 0;
 let timer;
+let timeCounting = false;
+const timerText = document.querySelector('.timer-container');
 
+// Timer button functionality
 document.querySelector('.card').addEventListener('click', startTimer);
-// Add stopTimer
-// Add resetTimer
+document.querySelector('.restart').addEventListener('click', () => {
+	stopTimer();
+	timerText.innerHTML = '00:00';
+})
 
+// Timer start
 function startTimer() {
-	timer = setInterval(insertTime, 1000);
+	if (timeCounting == false) {
+		timer = setInterval(insertTime, 1000);
+		timeCounting = true;
+	} else {
+		return;
+	}
 }
 
+// Timer stop
 function stopTimer() {
 	clearInterval(timer);
 	sec = 0;
 	min = 0;
+	timeCounting = false;
 }
 
+// Timer min, sec and display time
 function insertTime() {
 	sec++;
 	if (sec < 10) {
@@ -105,7 +124,7 @@ function insertTime() {
 	}
 
 	// Display the time
-	document.querySelector('.timer-container').innerHTML = `0${min}:${sec}`;
+	timerText.innerHTML = `0${min}:${sec}`;
 }
 
 
