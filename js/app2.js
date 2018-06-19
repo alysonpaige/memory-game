@@ -62,8 +62,7 @@ allCards.forEach(function(card) {
 					// clearTimeout to stop being able to open more than 2 cards quickly
 				}
 				addMoves();
-				// moves += 1;
-				// movesCounter.innerText = moves;
+				checkScore();
 			}
 		}
 	});
@@ -78,6 +77,25 @@ function addMoves() {
 	moves++;
 	const movesCounter = document.querySelector('.moves');
 	movesCounter.innerHTML = moves;
+}
+
+/*
+STARS
+*/
+function checkScore() {
+	if (moves === 16 || moves === 24) {
+		hideStar();
+	}
+}
+
+function hideStar() {
+	const starsList = document.querySelectorAll('.stars li');
+	for (star of starsList) {
+		if (star.style.display !== 'none') {
+			star.style.display = 'none';
+			break;
+		}
+	}
 }
 
 /* TIMER
@@ -132,6 +150,9 @@ function insertTime() {
 	timerText.innerHTML = `0${min}:${sec}`;
 }
 
+/*
+RESET FUNCTIONS
+*/
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
