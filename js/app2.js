@@ -15,27 +15,21 @@ function generateCard(card) {
 
 function initGame() {
 	var deckOfCards = document.querySelector('.deck');
-	// TODO: work on moves, also called in allCards.forEach
-	var movesCounter = document.querySelector('.moves');
 
 	var cardHTML = shuffle(cardArr).map(function(card) {
 		return generateCard(card);
 	});
-	moves = 0;
-	movesCounter.innerText
 
 	deckOfCards.innerHTML = cardHTML.join('');
 
 	// TODO: place setInterval in initGame?
 	// clearInterval;
 }
-
 initGame();
 
 const deckOfCards = document.querySelector('.deck');
 let allCards = deckOfCards.querySelectorAll('.card');
 let flippedCards = []; // Array to store flipped cards
-var moves = 0;
 
 allCards.forEach(function(card) {
 	card.addEventListener('click', function(event) {
@@ -67,13 +61,24 @@ allCards.forEach(function(card) {
 					}, 1000);
 					// clearTimeout to stop being able to open more than 2 cards quickly
 				}
-
-				moves += 1;
-				movesCounter.innerText = moves;
+				addMoves();
+				// moves += 1;
+				// movesCounter.innerText = moves;
 			}
 		}
 	});
 });
+
+/*
+MOVES
+*/
+let moves = 0;
+
+function addMoves() {
+	moves++;
+	const movesCounter = document.querySelector('.moves');
+	movesCounter.innerHTML = moves;
+}
 
 /* TIMER
 TODO:
