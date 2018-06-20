@@ -68,6 +68,20 @@ allCards.forEach(function(card) {
 	});
 });
 
+// Shuffle function from http://stackoverflow.com/a/2450976
+function shuffle(array) {
+	var currentIndex = array.length, temporaryValue, randomIndex;
+
+	while (currentIndex !== 0) {
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex -= 1;
+			temporaryValue = array[currentIndex];
+			array[currentIndex] = array[randomIndex];
+			array[randomIndex] = temporaryValue;
+	}
+	return array;
+}
+
 /*
 MOVES
 */
@@ -98,10 +112,8 @@ function hideStar() {
 	}
 }
 
-/* TIMER
-TODO:
-* - On 'restart' the timer doesn't start again after clicking, needs page refresh
-* - On 'restart' the board doesn't clear to start over
+/*
+TIMER
 */
 // Timer variables
 let sec = 0;
@@ -112,10 +124,6 @@ const timerText = document.querySelector('.timer-container');
 
 // Timer button functionality
 document.querySelector('.card').addEventListener('click', startTimer);
-document.querySelector('.restart').addEventListener('click', () => {
-	stopTimer();
-	timerText.innerHTML = '00:00';
-})
 
 // Timer start
 function startTimer() {
@@ -152,18 +160,18 @@ function insertTime() {
 
 /*
 RESET FUNCTIONS
+TODO:
+* - On 'restart' the timer and moves don't restart, needs page refresh
+* - On 'restart' the board doesn't clear to start over
 */
+// document.querySelector('.restart').addEventListener('click', () => {
+// 	stopTimer();
+// 	timerText.innerHTML = '00:00';
+// })
+document.querySelector('.restart').addEventListener('click', restartGame);
 
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-	var currentIndex = array.length, temporaryValue, randomIndex;
-
-	while (currentIndex !== 0) {
-			randomIndex = Math.floor(Math.random() * currentIndex);
-			currentIndex -= 1;
-			temporaryValue = array[currentIndex];
-			array[currentIndex] = array[randomIndex];
-			array[randomIndex] = temporaryValue;
-	}
-	return array;
+function restartGame() {
+	stopTimer();
+	timerText.innerHTML = '00:00';
+	
 }
