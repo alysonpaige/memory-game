@@ -171,7 +171,21 @@ TODO:
 document.querySelector('.restart').addEventListener('click', restartGame);
 
 function restartGame() {
+	// stop and reset timer
 	stopTimer();
-	timerText.innerHTML = '00:00';
+	timerText.innerHTML = '00:00'; // or call insertTime()
+
+	// reset moves
+	moves = 0;
+	document.querySelector('.moves').innerHTML = moves;
+
+	// reset stars
+	stars = 0;
+	const starsList = document.querySelectorAll('.stars li');
+	for (star of starsList) {
+		star.style.display = 'inline';
+	}
+
+	// clear board, flip all cards over
 	
 }
