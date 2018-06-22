@@ -59,7 +59,8 @@ allCards.forEach(function(card) {
 
 						flippedCards = [];
 					}, 1000);
-					// clearTimeout to stop being able to open more than 2 cards quickly
+					// prevent being able to open more than 2 cards quickly
+					clearTimeout();
 				}
 				addMoves();
 				checkScore();
@@ -164,10 +165,6 @@ TODO:
 * - On 'restart' the timer and moves don't restart, needs page refresh
 * - On 'restart' the board doesn't clear to start over
 */
-// document.querySelector('.restart').addEventListener('click', () => {
-// 	stopTimer();
-// 	timerText.innerHTML = '00:00';
-// })
 document.querySelector('.restart').addEventListener('click', restartGame);
 
 function restartGame() {
@@ -187,5 +184,5 @@ function restartGame() {
 	}
 
 	// clear board, flip all cards over
-	
+
 }
