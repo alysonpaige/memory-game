@@ -21,9 +21,6 @@ function initGame() {
 	});
 
 	deckOfCards.innerHTML = cardHTML.join('');
-
-	// TODO: place setInterval in initGame?
-	// clearInterval;
 }
 initGame();
 
@@ -161,9 +158,6 @@ function insertTime() {
 
 /*
 RESET FUNCTIONS
-TODO:
-* - On 'restart' the timer and moves don't restart, needs page refresh
-* - On 'restart' the board doesn't clear to start over
 */
 document.querySelector('.restart').addEventListener('click', restartGame);
 
@@ -184,5 +178,9 @@ function restartGame() {
 	}
 
 	// clear board, flip all cards over
+	initGame();
 
+	/* TODO:
+	* - Unable to click on cards and truly restart game
+	*/
 }
