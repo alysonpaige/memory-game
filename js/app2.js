@@ -1,3 +1,6 @@
+/*
+VARIABLE DECLARATIONS
+*/
 const cardArr = [ "fa-diamond", "fa-diamond",
 									"fa-paper-plane-o", "fa-paper-plane-o",
 									"fa-anchor", "fa-anchor",
@@ -5,66 +8,82 @@ const cardArr = [ "fa-diamond", "fa-diamond",
 									"fa-cube", "fa-cube",
 									"fa-leaf", "fa-leaf",
 									"fa-bicycle", "fa-bicycle",
-									"fa-bomb", "fa-bomb" ];
+                  "fa-bomb", "fa-bomb" ];
+const deckOfCards = document.querySelector('.deck');
+let allCards = deckOfCards.querySelectorAll('.card');
+const starsList = document.querySelectorAll('.stars li');
+let flippedCards = []; // Array to store flipped cards
+let moves = 0;
+let sec = 0;
+let min = 0;
+let timer;
+let timeCounting = false;
+const timerText = document.querySelector('.timer-container');
 
+/*
+GENERATE CARD HTML
+*/
 function generateCard(card) {
 	return `<li class="card" data-card="${card}">
 						<i class="fa ${card}"></i>
 					</li>`;
 }
 
+/*
+INITIATE GAME
+*/
 function initGame() {
-	var deckOfCards = document.querySelector('.deck');
+	const deckOfCards = document.querySelector('.deck');
 
-	var cardHTML = shuffle(cardArr).map(function(card) {
+	const cardHTML = shuffle(cardArr).map(function(card) {
 		return generateCard(card);
 	});
 
-	deckOfCards.innerHTML = cardHTML.join('');
+  deckOfCards.innerHTML = cardHTML.join('');
+
+  let allCards = deckOfCards.querySelectorAll('.card');
+  let flippedCards = []; // Array to store flipped cards  
+  
+  allCards.forEach(function(card) {
+    card.addEventListener('click', function(event) {
+  
+      if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
+        flippedCards.push(card);
+        card.classList.add('open', 'show');
+  
+        if (flippedCards.length === 2) {
+          // check if they match
+          if (flippedCards[0].dataset.card === flippedCards[1].dataset.card) {
+            flippedCards[0].classList.add('match');
+            flippedCards[0].classList.add('open');
+            flippedCards[0].classList.add('show');
+  
+            flippedCards[1].classList.add('match');
+            flippedCards[1].classList.add('open');
+            flippedCards[1].classList.add('show');
+  
+            flippedCards = [];
+          } else {
+            // if they don't match, hide
+            setTimeout(function() {
+              flippedCards.forEach(function(card) {
+                card.classList.remove('open', 'show');
+              });
+  
+              flippedCards = [];
+            }, 1000);
+            // prevent being able to open more than 2 cards quickly
+            clearTimeout();
+          }
+          addMoves();
+          checkScore();
+        }
+      }
+    });
+  });
 }
 initGame();
 
-const deckOfCards = document.querySelector('.deck');
-let allCards = deckOfCards.querySelectorAll('.card');
-let flippedCards = []; // Array to store flipped cards
-
-allCards.forEach(function(card) {
-	card.addEventListener('click', function(event) {
-
-		if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
-			flippedCards.push(card);
-			card.classList.add('open', 'show');
-
-			if (flippedCards.length === 2) {
-				// check if they match
-				if (flippedCards[0].dataset.card === flippedCards[1].dataset.card) {
-					flippedCards[0].classList.add('match');
-					flippedCards[0].classList.add('open');
-					flippedCards[0].classList.add('show');
-
-					flippedCards[1].classList.add('match');
-					flippedCards[1].classList.add('open');
-					flippedCards[1].classList.add('show');
-
-					flippedCards = [];
-				} else {
-					// if they don't match, hide
-					setTimeout(function() {
-						flippedCards.forEach(function(card) {
-							card.classList.remove('open', 'show');
-						});
-
-						flippedCards = [];
-					}, 1000);
-					// prevent being able to open more than 2 cards quickly
-					clearTimeout();
-				}
-				addMoves();
-				checkScore();
-			}
-		}
-	});
-});
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -83,8 +102,6 @@ function shuffle(array) {
 /*
 MOVES
 */
-let moves = 0;
-
 function addMoves() {
 	moves++;
 	const movesCounter = document.querySelector('.moves');
@@ -113,13 +130,6 @@ function hideStar() {
 /*
 TIMER
 */
-// Timer variables
-let sec = 0;
-let min = 0;
-let timer;
-let timeCounting = false;
-const timerText = document.querySelector('.timer-container');
-
 // Timer button functionality
 document.querySelector('.card').addEventListener('click', startTimer);
 
@@ -166,23 +176,20 @@ function restartGame() {
 	stopTimer();
 	// timeCounting = false;
 	// insertTime();
-	timerText.innerHTML = `<i class="fa fa-clock-o"></i> 0${min}:0${sec}`;
+  timerText.innerHTML = `<i class="fa fa-clock-o"></i> 0${min}:0${sec}`;
+  // TODO: start timer on click only
+  startTimer();
 
 	// reset moves
 	moves = 0;
 	document.querySelector('.moves').innerHTML = moves;
 
 	// reset stars
-	stars = 0;
 	const starsList = document.querySelectorAll('.stars li');
 	for (star of starsList) {
 		star.style.display = 'inline';
 	}
 
-	// clear board, flip all cards over
-	initGame();
-
-	/* TODO:
-	* - Unable to click on cards and truly restart game
-	*/
+	// clear board, flip all cards over, play
+  initGame();
 }
