@@ -153,7 +153,7 @@ function insertTime() {
 	}
 
 	// Display the time
-	timerText.innerHTML = `0${min}:${sec}`;
+	timerText.innerHTML = `<i class="fa fa-clock-o"></i> 0${min}:${sec}`;
 }
 
 /*
@@ -164,7 +164,9 @@ document.querySelector('.restart').addEventListener('click', restartGame);
 function restartGame() {
 	// stop and reset timer
 	stopTimer();
-	timerText.innerHTML = '00:00'; // or call insertTime()
+	// timeCounting = false;
+	// insertTime();
+	timerText.innerHTML = `<i class="fa fa-clock-o"></i> 0${min}:0${sec}`;
 
 	// reset moves
 	moves = 0;
