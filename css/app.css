@@ -114,7 +114,7 @@ Modal styles
 
 .modal {
     /* display: none; hide by default */
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100%;
@@ -125,8 +125,23 @@ Modal styles
 .modal__content {
     position: relative;
     transform: translate(-50%, -70%);
+    border-radius: 4px;
     width: 400px;
     top: 50%;
     left: 50%;
     background: #ffffff;
+}
+
+.modal__close {
+    cursor: pointer;
+}
+
+button {
+    border: none;
+}
+
+.btn__replay {
+    padding: 10px 24px;
+    border-radius: 4px;
+    background-color: #008CBA;
 }
