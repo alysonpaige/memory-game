@@ -124,8 +124,8 @@ Modal styles
 
 .modal__content {
     position: relative;
+    transform: translate(-50%, -70%);
     width: 400px;
-    height: 400px;
     top: 50%;
     left: 50%;
     background: #ffffff;
