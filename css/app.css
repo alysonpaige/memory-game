@@ -144,4 +144,12 @@ button {
     padding: 10px 24px;
     border-radius: 4px;
     background-color: #008CBA;
+    text-decoration: none;
+    text-align: center;
+    border:none;
+}
+
+.btn__replay:hover {
+    cursor: pointer;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
