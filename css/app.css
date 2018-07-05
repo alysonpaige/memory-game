@@ -124,6 +124,7 @@ Modal styles
 
 .modal__content {
     position: relative;
+    padding: 0 1.5rem;
     transform: translate(-50%, -70%);
     border-radius: 4px;
     width: 400px;
@@ -132,8 +133,15 @@ Modal styles
     background: #ffffff;
 }
 
+.modal__headings {
+    text-align: center;
+}
+
 .modal__close {
+    text-align: right;
     cursor: pointer;
+    font-weight: bold;
+    font-size: 2em;
 }
 
 button {
