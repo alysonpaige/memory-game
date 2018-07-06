@@ -113,7 +113,6 @@ Modal styles
 */
 
 .modal {
-    /* display: none; hide by default */
     position: fixed;
     top: 0;
     left: 0;
@@ -142,6 +141,10 @@ Modal styles
     cursor: pointer;
     font-weight: bold;
     font-size: 2em;
+}
+
+.hide {
+    display: none;
 }
 
 button {
