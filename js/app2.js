@@ -193,3 +193,14 @@ function restartGame() {
 	// clear board, flip all cards over, play
   initGame();
 }
+
+/*
+MODAL
+*/
+function toggleModal() {
+	const modal = document.querySelector('.modal');
+	modal.classList.toggle('hide');
+}
+
+toggleModal(); // Open Modal
+toggleModal(); // Close Modal
