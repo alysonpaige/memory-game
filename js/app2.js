@@ -204,3 +204,8 @@ function toggleModal() {
 
 toggleModal(); // Open Modal
 toggleModal(); // Close Modal
+
+// Play again replay button
+document.querySelector('.btn__replay').addEventListener('click', () => {
+	console.log('play again pressed');
+})
