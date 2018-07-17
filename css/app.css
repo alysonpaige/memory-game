@@ -143,9 +143,9 @@ Modal styles
     font-size: 2em;
 }
 
-.hide {
+/* .hide {
     display: none;
-}
+} */
 
 button {
     border: none;
